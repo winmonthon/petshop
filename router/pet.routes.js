@@ -16,7 +16,7 @@ router.get('/pet/new', (req, res) => {
 router.post('/pet', async (req, res) => {
     const pet = new Pet(req.body.pet);
     await pet.save();
-    res.redirect(`/pets/${pet._id}`)
+    res.redirect(`/pet/${pet._id}`)
 })
 
 router.get('/pet/:id', async (req, res) => {
