@@ -16,7 +16,7 @@ router.get('/pet/new', (req, res) => {
 router.post('/pet', async (req, res) => {
     const pet = new Pet(req.body.pet);
     await pet.save();
-    res.redirect(`/pet/${pet._id}`)
+    res.redirect(`/pets/${pet._id}`)
 })
 
 router.get('/pet/:id', async (req, res) => {
@@ -41,7 +41,7 @@ router.put('/pet/:id', async (req, res) => {
 router.delete('/pet/:id', async (req, res) => {
     const { id } = req.params;
     const pet = await Pet.findByIdAndDelete(id)
-    res.redirect('/pet')
+    res.redirect('/')
 })
 
 
