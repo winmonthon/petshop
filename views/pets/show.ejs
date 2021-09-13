@@ -1,0 +1,42 @@
+<% layout('layout/boilerplate') %>
+    <div class="row mb-3">
+        <div class="col-sm-6 ">
+            <div class="card shadow-sm  mb-5 bg-body rounded">
+                <img src="<%= pet.image %>" class="card-img" alt="...">
+
+            </div>
+
+        </div>
+        <div class='col-sm-6 '>
+            <div class="card-body">
+                <h2 class="card-title fw-bolder">
+                    <%=pet.title %>
+                </h2>
+                <p class="card-text">
+                    Pirce: <%= pet.price %>
+                </p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item text-muted">
+                    Gender:<%= pet.gender %>
+                </li>
+                <li class="list-group-item">
+                    Stock <%= pet.stock %>
+                </li>
+                <div class="card-body ">
+                    <a href="/pet/<%= pet._id%>/edit" class="card-link btn btn-primary">Edit</a>
+                    <form action="/pet/<%= pet._id %>?_method=DELETE" method="POST" class='d-inline'>
+                        <button class="card-link btn btn-danger">
+                            Delete
+                        </button>
+
+                    </form>
+                </div>
+
+                <footer>
+                    <a class="nav-link" href="/pet">BACK TO ALL PETS</a>
+                </footer>
+
+        </div>
+
+    </div>
