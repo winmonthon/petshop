@@ -8,6 +8,7 @@ const methodOverride = require('method-override')
 const path = require('path');
 const petRoutes = require('./router/pet.routes');
 const { readdirSync } = require('fs');
+const ExpressError = require('./utils/ExpressError')
 
 mongoose.connect('mongodb+srv://monthon:winwin00@mydb01.ejx8a.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {
     useNewUrlParser: true,
@@ -33,14 +34,20 @@ app.use(methodOverride('_method'))
 
 app.use('/', petRoutes);
 
+app.all('*', (req, res, next) => {
+    next(new ExpressError('Page Not Found', 404))
+})
 
+app.use((err, req, res, next) => {
+    const { statusCode = 500, message = 'Some Thing Went Wrong' } = err;
+    res.status(statusCode).render('error', { err });
 
-
+})
 
 
 
 let port = process.env.PORT || 3000;
 
 app.listen(port, () => {
-    console.log(`"LISTENING ON PORT ${port}"`)
+    console.log(`LISTENING ON PORT ${port}`)
 })
