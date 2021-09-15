@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const petReviews = require('./petreviews')
 
 const PetSchema = new Schema({
     title: String,
@@ -18,7 +19,12 @@ const PetSchema = new Schema({
         type: Number,
         require: true,
         min: 0
-    }
+    },
+    petReviews: [{
+        type: Schema.Types.ObjectId,
+        ref: 'PetReview'
+    }]
+
 })
 
 const Pet = mongoose.model('Pet', PetSchema)
