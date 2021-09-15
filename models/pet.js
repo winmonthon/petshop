@@ -27,6 +27,16 @@ const PetSchema = new Schema({
 
 })
 
+PetSchema.post('findOneAndDelete', async function (doc) {
+    if (doc) {
+        await petReviews.remove({
+            _id: {
+                $in: doc.petReviews
+            }
+        })
+    }
+})
+
 const Pet = mongoose.model('Pet', PetSchema)
 
 module.exports = Pet;

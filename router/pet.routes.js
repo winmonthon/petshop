@@ -63,13 +63,11 @@ router.delete('/pet/:id', async (req, res) => {
     res.redirect('/')
 })
 
-//still error cant delete lets check
+
 router.delete('/pet/:id/reviews/:reviewId', async (req, res) => {
     const { id, reviewId } = req.params;
-
     await Pet.findByIdAndUpdate(id, { $pull: { petReviews: reviewId } })
     await petReviews.findByIdAndDelete(reviewId)
-
     res.redirect(`/pet/${id}`)
 })
 
