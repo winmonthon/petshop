@@ -3,25 +3,26 @@
         <div class="col-sm-6 ">
             <div class="card shadow-sm  mb-5 bg-body rounded">
                 <img src="<%= pet.image %>" class="card-img" alt="...">
-
             </div>
-
         </div>
         <div class='col-sm-6 '>
             <div class="card-body">
                 <h2 class="card-title fw-bolder">
-                    <%=pet.title %>
+                    Name : <%=pet.name %>
                 </h2>
-                <p class="card-text">
-                    Pirce: <%= pet.price %>
-                </p>
+                <h4 class="card-title text-muted">
+                    <%=pet.title %>
+                </h4>
             </div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item text-muted">
-                    Gender:<%= pet.gender %>
+                    Gender : <%= pet.gender %>
                 </li>
                 <li class="list-group-item">
-                    Stock <%= pet.stock %>
+                    Price : <%= pet.price %> ฿
+                </li>
+                <li class="list-group-item">
+                    Age : <%= pet.age %> year
                 </li>
                 <div class="card-body ">
                     <a href="/pet/<%= pet._id%>/edit" class="card-link btn btn-primary">Edit</a>
@@ -37,7 +38,7 @@
                     <a class="nav-link" href="/">BACK TO ALL PETS</a>
                 </footer>
                 <div class="card-body ">
-                    <h3>Leave a Review</h3>
+                    <h4>Leave Comment</h4>
                     <form action="/pet/<%= pet._id %>/reviews" method="POST" class='needs-validation ' novalidate>
                         <div class="mb-3">
                             <label class='label' for="Rating">Rating</label>
@@ -45,7 +46,8 @@
                                 id="rating">
                         </div>
                         <div class='mb-3'>
-                            <label for="body">Review</label>
+                            <label class=" mb-1 " for="body">Add Your Comments</label>
+
                             <textarea class='form-control' name="petReviews[body]" id="body" cols="30" rows="3"
                                 required></textarea>
                         </div>
@@ -56,13 +58,13 @@
                             <button class='btn btn-success mb-3'>Submit</button>
                         </div>
                     </form>
-                    <h4 class='card-title mb-0'>Other Reviews Here:</h4>
+                    <h4 class='card-title mb-0'>Other Comments Here:</h4>
                 </div>
                 <% if(pet.petReviews=='' ) {%>
                     <div class="card-body pt-0">
                         <div class="card-body">
                             <h5 class="text-muted">
-                                No review now!
+                                No comment now!
                             </h5>
                         </div>
                     </div>

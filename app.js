@@ -25,6 +25,7 @@ mongoose.connect('mongodb+srv://monthon:winwin00@mydb01.ejx8a.mongodb.net/myFirs
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.use("/public", express.static(__dirname + "/public"));
 app.use(express.urlencoded({ extended: true }))
 app.engine('ejs', ejsMate);
 app.use(methodOverride('_method'))
@@ -34,15 +35,15 @@ app.use(methodOverride('_method'))
 
 app.use('/', petRoutes);
 
-//app.all('*', (req, res, next) => {
-//  next(new ExpressError('Page Not Found', 404))
-//})
+app.all('*', (req, res, next) => {
+    next(new ExpressError('Page Not Found', 404))
+})
 
-//app.use((err, req, res, next) => {
-//  const { statusCode = 500, message = 'Some Thing Went Wrong' } = err;
-//  res.status(statusCode).render('error', { err });
+app.use((err, req, res, next) => {
+    const { status = 500, message = 'Something Went Wrong' } = err;
+    res.status(status).render('error', { err });
 
-//})
+})
 
 
 

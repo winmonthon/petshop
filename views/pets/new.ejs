@@ -5,6 +5,13 @@
         <div class="col-sm-6 offset-sm-3">
             <form action="/pet" method="POST" novalidate class='needs-validation'>
                 <div class='mb-3'>
+                    <label class='form-label' for="name">Name</label>
+                    <input class="form-control" type="text" name="pet[name]" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class='mb-3'>
                     <label class='form-label' for="title">Title</label>
                     <input class="form-control" type="text" name="pet[title]" required>
                     <div class="valid-feedback">
@@ -35,10 +42,10 @@
                 </div>
 
                 <div class="mb-3">
-                    <label class='form-label' for="stock">Stock</label>
+                    <label class='form-label' for="age">Age</label>
                     <div class="input-group ">
 
-                        <input type="number" class="form-control" id="stock" name="pet[stock]"
+                        <input type="number" class="form-control" id="age" name="pet[age]"
                             aria-describedby="basic-addon1" required>
                     </div>
                     <div class="valid-feedback">

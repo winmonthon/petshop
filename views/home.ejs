@@ -5,29 +5,41 @@
     </h1>
     <div class="d-flex">
         <div class="row">
-            <% for ( let pet of pets) {%>
+            <% for ( let [i,pet] of pets.entries()) {%>
                 <div class="col-sm-4 d-flex ">
                     <div class="card shadow-sm p-0 mb-3 bg-body rounded">
-                        <img src="<%= pet.image %> " class="card-img-top" id='image' alt="...">
+                        <a href="/pet/<%= pet._id %>"><img id="homeimg" src="<%= pet.image %> " class="card-img-top"
+                                id='image' alt="..."></a>
+                        <div class="btn-group" role="group" aria-label="Basic outlined example">
+                            <button onclick="clickLove('<%= i %>')" id="btnLove<%=[i]%>" type="button"
+                                class="btn btn-outline-danger">Love</button>
+
+                        </div>
                         <div class="card-body row d-flex">
                             <div class='mb-3'>
                                 <h3 class="card-title card-header p-0 mb-3">
-                                    <%= pet.title %>
-
+                                    <%= pet.name %>
                                 </h3>
+                                <p class="card-text text-muted">
+
+                                    <b>
+                                        <%= pet.title %>
+                                    </b>
+                                </p>
+                                </p>
                                 <p class="card-text">
-                                    <b>Price:</b>
+                                    <b>Price : </b>
                                     <%= pet.price %> bath
                                 </p>
                                 <p class="card-text">
                                     <small class="text-muted">
-                                        Stock: <%= pet.stock %>
+                                        Age : <%= pet.age %> year
                                     </small>
                                 </p>
                             </div>
 
                             <div class="align-self-end ">
-                                <a href="/pet/<%= pet._id %>" class="btn btn-primary">View <%= pet.title %>
+                                <a href="/pet/<%= pet._id %>" class="btn btn-primary">View More
                                 </a>
                             </div>
                         </div>
@@ -38,3 +50,26 @@
 
 
     </div>
+
+    <script>
+
+
+        let love = false
+
+        const clickLove = function (i) {
+
+            const btnLove = document.querySelector(`#btnLove${i}`)
+
+
+            if (love === !true) {
+                btnLove.classList.add('bg-danger', 'text-light')
+                love = true;
+            } else if (love === true) {
+                btnLove.classList.remove('bg-danger', 'text-light')
+                love = false
+            }
+        }
+
+
+
+    </script>

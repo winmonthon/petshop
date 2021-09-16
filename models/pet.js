@@ -4,6 +4,7 @@ const petReviews = require('./petreviews')
 
 const PetSchema = new Schema({
     title: String,
+    name: String,
     image: String,
     price: {
         type: Number,
@@ -15,7 +16,7 @@ const PetSchema = new Schema({
         lowercase: true,
         enum: ['male', 'female']
     },
-    stock: {
+    age: {
         type: Number,
         require: true,
         min: 0
